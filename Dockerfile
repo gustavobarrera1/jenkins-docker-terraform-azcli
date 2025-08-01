@@ -1,5 +1,5 @@
 # Usa la imagen base de Jenkins
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:lts-jdk17
 
 # Instala sudo y otras herramientas necesarias
 USER root
@@ -20,15 +20,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Instala Terraform
-# La versión 1.9.0 es la última al momento de escribir esto, puedes cambiarla.
-ENV TERRAFORM_VERSION="1.9.0"
+ENV TERRAFORM_VERSION="1.12.2"
 RUN curl -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 RUN unzip /tmp/terraform.zip -d /usr/local/bin/
 RUN rm /tmp/terraform.zip
 
 # Instala Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-
-# Añade el usuario jenkins al grupo docker
-
-# Vuelve al usuario jenkins para el resto de la ejecución
