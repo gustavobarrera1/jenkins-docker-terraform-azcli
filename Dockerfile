@@ -1,5 +1,5 @@
 # Usa la imagen base de Jenkins
-FROM jenkins/jenkins:lts-jdk17
+FROM jenkins/jenkins:lts-jdk21
 
 # Instala sudo y otras herramientas necesarias
 USER root
